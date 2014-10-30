@@ -10,6 +10,8 @@ class PostRepliesController < ApplicationController
     @reply = @topic.replies.build(reply_params)
     @reply.user = current_user
     @reply.save
+    @topic.reply_counter += 1
+    @topic.save
     redirect_to post_url(@topic)
   end
 

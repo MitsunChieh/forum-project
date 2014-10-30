@@ -5,7 +5,7 @@
     <th>Title</th>
     <th>Category</th>
     <th>User</th>
-    <th>Replies</th>
+    <th>Replies<%= link_to 'ASC', asc_posts_path("replies"), method: :get %> <%= link_to 'DESC', desc_posts_path("replies"), method: :get %></th>
     <th>Last Reply</th>
     <th>Post Date</th>
     <th>Action</th>
@@ -18,8 +18,8 @@
     <td><%= topic.replies.size %></td>
     <td><%= topic.replies.last %></td>
     <td><%= topic.created_at %></td>
-    <td><%= link_to 'Edit', edit_post_path(topic) %>
-        <% if current_user == topic.user %>
+    <td><% if current_user == topic.user %>
+          <%= link_to 'Edit', edit_post_path(topic) %>
           <%= link_to 'Delete', post_path(topic), method: :delete %>
         <% end %>
     </td>

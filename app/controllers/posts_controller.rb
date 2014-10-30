@@ -39,7 +39,16 @@ class PostsController < ApplicationController
     redirect_to posts_url
   end
 
+  def asc
+    @t = Topic.all
+    @topics = @t.order("reply_counter ASC")
+    render :action => :index
   end
+
+  def desc
+    @t = Topic.all
+    @topics = @t.order("reply_counter DESC")
+    render :action => :index
   end
 
   private
