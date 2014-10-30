@@ -1,4 +1,4 @@
-<%= link_to 'New Topic', new_post_path %>
+<%= simple_format(link_to 'New Topic', new_post_path) %>
 
 <table>
   <tr>
@@ -6,14 +6,16 @@
     <th>Category</th>
     <th>User</th>
     <th>Replies</th>
-    <th>Date</th>
+    <th>Last Reply</th>
+    <th>Post Date</th>
   </tr>
   <% @topics.each do |topic| %>
   <tr>
-    <td><%= topic.name %></td>
+    <td><%= link_to topic.name, post_path(topic) %></td>
     <td><%= topic.category.name %></td>
     <td><%= topic.user.name %></td>
     <td><%= topic.replies.size %></td>
+    <td><%= %></td>
     <td><%= topic.created_at %></td>
   </tr>
   <% end %>

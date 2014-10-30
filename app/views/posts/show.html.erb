@@ -1,0 +1,11 @@
+<%= simple_format(@topic.name) %>
+<%= simple_format(@topic.content) %>
+<ul>
+  <% @topic.replies.map do |r| %>
+    <li><%= r.content %></li>
+  <% end %>
+</ul>
+
+<%= form_for @%>
+
+<%= simple_format(link_to 'Back to Index', posts_path) %>

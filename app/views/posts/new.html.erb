@@ -2,3 +2,5 @@
   <%= render 'form', f: f %>
   <%= f.submit 'Create' %>
 <% end %>
+
+<%= simple_format(link_to 'Back to Index', posts_path) %>

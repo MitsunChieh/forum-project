@@ -12,8 +12,10 @@ Category.create(name: "Rails")
 Category.create(name: "Parse")
 Topic.create(name: "How to build a rails forum?", content: "As topic", user_id: 1, category_id: 1)
 Topic.create(name: "How to build a parse forum?", content: "As topic", user_id: 2, category_id: 2)
-Reply.create(topic_id: 1, content: "Just write down rails hello world!", user_id: 2)
-Reply.create(topic_id: 2, content: "Just write down parse hello world!", user_id: 1)
+Reply.create(topic_id: 1, content: "11111, Just write down rails hello world!", user_id: 2)
+Reply.create(topic_id: 1, content: "22222, Just write down rails hello world!", user_id: 2)
+Reply.create(topic_id: 2, content: "11111, Just write down parse hello world!", user_id: 1)
+Reply.create(topic_id: 2, content: "22222, Just write down parse hello world!", user_id: 1)
 @u = User.all
 @u.each do |u|
   u.name = u.email.split("@").first
