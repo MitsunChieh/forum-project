@@ -8,6 +8,7 @@
     <th>Replies</th>
     <th>Last Reply</th>
     <th>Post Date</th>
+    <th>Action</th>
   </tr>
   <% @topics.each do |topic| %>
   <tr>
@@ -15,8 +16,13 @@
     <td><%= topic.category.name %></td>
     <td><%= topic.user.name %></td>
     <td><%= topic.replies.size %></td>
-    <td><%= %></td>
+    <td><%= topic.replies.last %></td>
     <td><%= topic.created_at %></td>
+    <td><%= link_to 'Edit', edit_post_path(topic) %>
+        <% if current_user == topic.user %>
+          <%= link_to 'Delete', post_path(topic), method: :delete %>
+        <% end %>
+    </td>
   </tr>
   <% end %>
 </table>

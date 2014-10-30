@@ -1,0 +1,6 @@
+<%= form_for @topic, url: post_path(@topic), method: :patch do |f| %>
+  <%= render 'topicform', f: f %>
+  <%= f.submit 'Update' %>
+<% end %>
+
+<%= simple_format(link_to 'Back to post', post_path(@topic)) %>

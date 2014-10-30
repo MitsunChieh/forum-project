@@ -1,5 +1,9 @@
 <%= simple_format(@topic.name) %>
 <%= simple_format(@topic.content) %>
+<%= link_to 'Edit', edit_post_path(@topic) %>
+<% if current_user == @topic.user %>
+  <%= link_to 'Delete', post_path(@topic), method: :delete %>
+<% end %>
 <ul>
   <% @topic.replies.each do |r| %>
     <li><%= r.content %></li>
