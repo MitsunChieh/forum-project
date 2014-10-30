@@ -8,11 +8,11 @@
   </tr>
   <% @topics.each do |topic| %>
   <tr>
-    <td><%= topic.name%></td>
-    <td><%= %></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><%= topic.name %></td>
+    <td><%= topic.category.name %></td>
+    <td><%= topic.user.name %></td>
+    <td><%= topic.replies.size %></td>
+    <td><%= topic.created_at %></td>
   </tr>
   <% end %>
 </table>
