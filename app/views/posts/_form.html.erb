@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td><%= f.label :name, 'Title'%></td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :category, 'Category' %></td>
+    <td><%= f.collection_select(:category_id, Category.all, :id, :name) %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :content, "Content"%></td>
+    <td><%= f.text_area :content%></td>
+  </tr>
+</table>
