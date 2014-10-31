@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
+
   before_action :authenticate_user!
-  before_action :set_topic, :only => [ :show, :edit, :update, :destroy]
+  before_action :set_topic, :only => [:show]
+  before_action :set_my_topic, :only => [:edit, :update, :destroy]
 
   def index
     if params[:order]
@@ -36,13 +38,14 @@ class PostsController < ApplicationController
   end
 
   def update
-    @topic.attributes = topic_params
-    @topic.save
+    @topic.update(topic_params)
+
     redirect_to post_url(@topic)
   end
 
   def destroy
     @topic.destroy
+
     redirect_to posts_url
   end
 
@@ -52,8 +55,12 @@ class PostsController < ApplicationController
     @topic = Topic.find(params[:id])
   end
 
+  def set_my_topic
+    @topic = current_user.topics.find(params[:id])
+  end
+
   def topic_params
-    params.require(:topic).permit(:name, :content, :category_id, :user_id)
+    params.require(:topic).permit(:name, :content, :category_id)
   end
 
 end

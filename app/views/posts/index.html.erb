@@ -15,7 +15,7 @@
     <td><%= link_to topic.name, post_path(topic) %></td>
     <td><%= topic.category.name %></td>
     <td><%= topic.user.name %></td>
-    <td><%= topic.replies.size %></td>
+    <td><%= topic.reply_counter %></td>
     <td><%= topic.replies.last.try(:created_at) %></td>
     <td><%= topic.created_at.strftime("%m/%d/%Y") %></td>
     <td><% if current_user == topic.user %>

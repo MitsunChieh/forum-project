@@ -1,17 +1,16 @@
 class PostRepliesController < ApplicationController
+
   before_action :find_topic
   before_action :authenticate_user!
-
-  # def new
-  #   @reply = @topic.replies.build
-  # end
 
   def create
     @reply = @topic.replies.build(reply_params)
     @reply.user = current_user
     @reply.save
+
     @topic.reply_counter += 1
     @topic.save
+
     redirect_to post_url(@topic)
   end
 
