@@ -3,7 +3,13 @@ class PostsController < ApplicationController
   before_action :set_topic, :only => [ :show, :edit, :update, :destroy]
 
   def index
-    @topics = Topic.all
+    if params[:order]
+      raise "Hack!" unless ["reply_counter", "created_at"].include?(params[:order])
+
+      @topics = Topic.order("#{params[:order]} #{params[:sort]}")
+    else
+      @topics = Topic.all
+    end
   end
 
   def new
@@ -13,6 +19,7 @@ class PostsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user = current_user
+    @topic.reply_counter = 0
 
     if @topic.save
       redirect_to posts_url
@@ -37,18 +44,6 @@ class PostsController < ApplicationController
   def destroy
     @topic.destroy
     redirect_to posts_url
-  end
-
-  def asc
-    @t = Topic.all
-    @topics = @t.order("reply_counter ASC")
-    render :action => :index
-  end
-
-  def desc
-    @t = Topic.all
-    @topics = @t.order("reply_counter DESC")
-    render :action => :index
   end
 
   private

@@ -5,9 +5,9 @@
     <th>Title</th>
     <th>Category</th>
     <th>User</th>
-    <th>Replies<%= link_to 'ASC', asc_posts_path("replies"), method: :get %> <%= link_to 'DESC', desc_posts_path("replies"), method: :get %></th>
+    <th>Replies<%= link_to 'ASC', posts_path("replies", order: "reply_counter", sort: "asc") %> <%= link_to 'DESC', posts_path("replies", order: "reply_counter", sort: "desc") %></th>
     <th>Last Reply</th>
-    <th>Post Date</th>
+    <th>Post Date<%= link_to 'ASC', posts_path("replies", order: "created_at", sort: "asc") %> <%= link_to 'DESC', posts_path("replies", order: "created_at", sort: "desc") %></th>
     <th>Action</th>
   </tr>
   <% @topics.each do |topic| %>
@@ -16,8 +16,8 @@
     <td><%= topic.category.name %></td>
     <td><%= topic.user.name %></td>
     <td><%= topic.replies.size %></td>
-    <td><%= topic.replies.last %></td>
-    <td><%= topic.created_at %></td>
+    <td><%= topic.replies.last.try(:created_at) %></td>
+    <td><%= topic.created_at.strftime("%m/%d/%Y") %></td>
     <td><% if current_user == topic.user %>
           <%= link_to 'Edit', edit_post_path(topic) %>
           <%= link_to 'Delete', post_path(topic), method: :delete %>
