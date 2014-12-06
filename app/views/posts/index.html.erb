@@ -13,11 +13,14 @@
   <% @topics.each do |topic| %>
   <tr>
     <td><%= link_to topic.name, post_path(topic) %></td>
-    <td><%= topic.category.name %></td>
+    <td><% topic.categories.each do |c| %>
+          <%= c.name %>
+        <% end %>
+    </td>
     <td><%= topic.user.name %></td>
     <td><%= topic.reply_counter %></td>
     <td><%= topic.replies.last.try(:created_at) %></td>
-    <td><%= topic.created_at.strftime("%m/%d/%Y") %></td>
+    <td><%= topic.created_at.strftime("%Y-%m-%d %T") %></td>
     <td><% if current_user == topic.user %>
           <%= link_to 'Edit', edit_post_path(topic) %>
           <%= link_to 'Delete', post_path(topic), method: :delete %>

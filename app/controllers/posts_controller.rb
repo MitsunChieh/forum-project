@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+
     @topic.user = current_user
     @topic.reply_counter = 0
 
@@ -60,7 +61,7 @@ class PostsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:name, :content, :category_id)
+    params.require(:topic).permit(:name, :content, :category_ids => [])
   end
 
 end

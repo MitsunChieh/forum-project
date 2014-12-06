@@ -4,8 +4,8 @@
     <td><%= f.text_field :name %></td>
   </tr>
   <tr>
-    <td><%= f.label :category, 'Category' %></td>
-    <td><%= f.collection_select(:category_id, Category.all, :id, :name) %></td>
+    <td><%= f.label :category_ids, 'Category' %></td>
+    <td><%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %></td>
   </tr>
   <tr>
     <td><%= f.label :content, "Content"%></td>
